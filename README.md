@@ -170,6 +170,10 @@ docs/                     architecture, database ERD, API reference, security
 - [API reference](docs/API.md) — endpoints, permissions, error format, examples.
 - [Security](docs/SECURITY.md) — threat model, OWASP mapping, controls, production checklist.
 - [Roadmap](ROADMAP.md) — delivered phases and future work.
+- [Changelog](CHANGELOG.md) — release history and unreleased changes.
+- [Security policy](SECURITY.md) — private vulnerability reporting.
+- [Architecture decisions](docs/adr/) — accepted ADRs and trade-offs.
+- [Repository audit](docs/audit/2026-11-13-repository-audit.md) — retroactive traceability and verification evidence.
 - [Engineering rules](AGENTS.md) — permanent workflow, review gates and Definition of Done.
 - [Contributing](CONTRIBUTING.md) — setup, branches, validation and pull-request process.
 
@@ -183,6 +187,9 @@ request, validated by required CI checks, and squash-merged. Read
 - Issues use `type:*`, `priority:*`, `status:*`, and `area:*` labels and belong to a
   release milestone. Milestones v0.1–v0.4 represent the delivered baseline;
   v1.0 tracks workflow and release readiness.
+- `main` requires a pull request, up-to-date branches, conversation resolution,
+  and passing `Typecheck, test, build`, `End-to-end tests`, and `Docker images`
+  checks. Force pushes and branch deletion are disabled.
 - Project V2 board automation is currently blocked by missing GitHub token
   scopes; issues and milestones are the active tracking fallback (see issue #18).
 - Security issues must use GitHub private vulnerability reporting, never a public

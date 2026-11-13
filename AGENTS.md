@@ -275,9 +275,10 @@ Use `gh` or the authenticated GitHub API. First verify auth, repository access, 
 Current known constraints (update this section as they change):
 
 - Project V2 board creation is blocked: token lacks `project`/`read:project` scopes. Tracking fallback: issues + milestones. Blocked issue: #18.
-- Branch protection is not yet configured. Tracking issue: #19.
+- `main` branch protection is configured with required pull requests, strict up-to-date checks, conversation resolution, linear history, disabled force pushes/deletions, and required checks `Typecheck, test, build`, `End-to-end tests`, and `Docker images` (issue #19, verified via API).
 - Local authoring environment has no Docker daemon; Docker image builds are verified by GitHub Actions.
-- No independent human reviewer is currently assigned; self-review is required and must not be represented as independent approval.
+- No independent human reviewer is currently assigned; self-review is required and must not be represented as independent approval. Required approvals remain 0 for this reason.
+- The Project board remains the only tracking blocker; remaining product hardening and scale work is tracked in issues #20–#34.
 
 ## 15. Session-end checklist
 
