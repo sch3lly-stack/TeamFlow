@@ -1,0 +1,33 @@
+{
+  "name": "teamflow",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "description": "TeamFlow — engineering team management platform",
+  "workspaces": [
+    "apps/*"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "concurrently -n api,web -c cyan,magenta \"npm run dev -w @teamflow/api\" \"npm run dev -w @teamflow/web\"",
+    "build": "npm run build -w @teamflow/api && npm run build -w @teamflow/web",
+    "typecheck": "npm run typecheck -w @teamflow/api && npm run typecheck -w @teamflow/web",
+    "test": "npm run test -w @teamflow/api",
+    "test:watch": "npm run test:watch -w @teamflow/api",
+    "test:e2e": "npm run test:e2e -w @teamflow/web",
+    "db:generate": "npm run db:generate -w @teamflow/api",
+    "db:migrate": "npm run db:migrate -w @teamflow/api",
+    "db:deploy": "npm run db:deploy -w @teamflow/api",
+    "db:seed": "npm run db:seed -w @teamflow/api",
+    "db:reset": "npm run db:reset -w @teamflow/api",
+    "db:studio": "npm run db:studio -w @teamflow/api"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.12.0"
+  }
+}

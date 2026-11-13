@@ -1,0 +1,76 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-teamflow}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-teamflow}
+      POSTGRES_DB: ${POSTGRES_DB:-teamflow}
+    volumes:
+      - teamflow_db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-teamflow} -d ${POSTGRES_DB:-teamflow}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    environment:
+      NODE_ENV: production
+      PORT: 4000
+      DATABASE_URL: postgresql://${POSTGRES_USER:-teamflow}:${POSTGRES_PASSWORD:-teamflow}@db:5432/${POSTGRES_DB:-teamflow}?schema=public
+      CLIENT_ORIGIN: ${CLIENT_ORIGIN:-http://localhost:8080}
+      SOCKET_CORS_ORIGIN: ${CLIENT_ORIGIN:-http://localhost:8080}
+      JWT_ACCESS_SECRET: ${JWT_ACCESS_SECRET:-replace-this-with-a-long-random-secret}
+      COOKIE_SECURE: ${COOKIE_SECURE:-false}
+      ACCESS_TOKEN_TTL_MINUTES: 15
+      REFRESH_TOKEN_TTL_DAYS: 30
+      UPLOAD_DIR: /app/uploads
+      MAX_UPLOAD_MB: 10
+      RATE_LIMIT_DISABLED: "false"
+    volumes:
+      - teamflow_uploads:/app/uploads
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "4000:4000"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O /dev/null http://127.0.0.1:4000/api/health || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+    restart: unless-stopped
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    depends_on:
+      api:
+        condition: service_healthy
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+
+  seed:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    profiles: ["tools"]
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-teamflow}:${POSTGRES_PASSWORD:-teamflow}@db:5432/${POSTGRES_DB:-teamflow}?schema=public
+      SEED_DEMO_PASSWORD: ${SEED_DEMO_PASSWORD:-Password123!}
+      SEED_DISABLE_ATTACHMENT: "true"
+    command: ["node", "apps/api/dist/seed.js"]
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  teamflow_db:
+  teamflow_uploads:

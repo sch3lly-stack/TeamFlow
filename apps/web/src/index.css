@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-slate-50 font-sans text-slate-900 dark:bg-ink-950 dark:text-slate-100;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  ::selection {
+    @apply bg-indigo-500/25;
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(148 163 184 / 0.45) transparent;
+  }
+
+  *::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: rgb(148 163 184 / 0.4);
+    border-radius: 999px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0.55;
+    cursor: pointer;
+  }
+
+  .dark input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+  }
+}
+
+@layer components {
+  .surface {
+    @apply rounded-xl border border-slate-200/90 bg-white shadow-card dark:border-slate-800/80 dark:bg-ink-900;
+  }
+
+  .surface-muted {
+    @apply rounded-xl border border-slate-200/80 bg-slate-50/80 dark:border-slate-800/70 dark:bg-ink-850/60;
+  }
+
+  .field-input {
+    @apply w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 disabled:cursor-not-allowed disabled:opacity-60 dark:border-slate-700 dark:bg-ink-850 dark:text-slate-100 dark:placeholder:text-slate-500 dark:focus:border-indigo-400;
+  }
+
+  .nav-link {
+    @apply flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-200/60 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800/60 dark:hover:text-slate-100;
+  }
+
+  .nav-link-active {
+    @apply bg-white text-indigo-600 shadow-sm dark:bg-slate-800/80 dark:text-indigo-300;
+  }
+
+  .table-row {
+    @apply border-b border-slate-200/70 last:border-0 dark:border-slate-800/70;
+  }
+
+  .divider {
+    @apply border-slate-200/80 dark:border-slate-800/80;
+  }
+
+  .skeleton {
+    @apply animate-pulse rounded-md bg-slate-200/80 dark:bg-slate-800/80;
+  }
+
+  .prose-text {
+    @apply whitespace-pre-wrap break-words text-sm leading-6 text-slate-600 dark:text-slate-300;
+  }
+}
+
+.grid-noise {
+  background-image:
+    linear-gradient(to right, rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
