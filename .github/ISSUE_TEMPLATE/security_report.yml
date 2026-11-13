@@ -1,0 +1,57 @@
+name: Security report (non-sensitive)
+description: Track security hardening work that does not contain exploit details
+title: "security: "
+labels: ["type:security"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Do not disclose exploit details, credentials, private data, or reproduction steps for an unpatched vulnerability in a public issue.** Use GitHub private vulnerability reporting or contact the maintainer privately. This template is only for non-sensitive security engineering tasks.
+  - type: textarea
+    id: objective
+    attributes:
+      label: Security objective
+      description: What control, hardening, or review is needed?
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Component, threat, current control, and relevant OWASP category.
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      placeholder: |
+        - [ ] ...
+        - [ ] Isolation/authorization tests pass
+        - [ ] Security documentation updated
+    validations:
+      required: true
+  - type: textarea
+    id: testing
+    attributes:
+      label: Testing and verification requirements
+      description: Include abuse-case tests and tenant-isolation checks.
+    validations:
+      required: true
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      options:
+        - Critical
+        - High
+        - Medium
+        - Low
+    validations:
+      required: true
