@@ -189,7 +189,12 @@ request, validated by required CI checks, and squash-merged. Read
   v1.0 tracks workflow and release readiness.
 - `main` requires a pull request, up-to-date branches, conversation resolution,
   and passing `Typecheck, test, build`, `End-to-end tests`, and `Docker images`
-  checks. Force pushes and branch deletion are disabled.
+  checks. Force pushes and branch deletion are disabled; only squash merges are
+  allowed and merged branches auto-delete.
+- Dependabot alerts/security updates, secret scanning with push protection, and
+  CodeQL default setup are enabled.
+- The session routine, board lifecycle columns, and cross-repository consistency
+  policy are documented in [AGENTS.md](AGENTS.md).
 - Project V2 board automation is currently blocked by missing GitHub token
   scopes; issues and milestones are the active tracking fallback (see issue #18).
 - Security issues must use GitHub private vulnerability reporting, never a public

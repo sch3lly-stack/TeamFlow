@@ -1,6 +1,6 @@
 # Contributing to TeamFlow
 
-Read [`AGENTS.md`](AGENTS.md) first. It is the permanent engineering rulebook for this repository. This guide explains the practical workflow; if the two conflict, the stricter security/review rule applies.
+Read [`AGENTS.md`](AGENTS.md) first, starting with its **Operating routine (read before every session)**. It is the permanent engineering rulebook for this repository. This guide explains the practical workflow; if the two conflict, the stricter security/review rule applies.
 
 ## Ways to contribute
 

@@ -6,6 +6,20 @@ This file applies to every human contributor, AI coding agent, reviewer, and rep
 
 This file must not be deleted, replaced, ignored, or excluded from version control without explicit authorization from the repository owner.
 
+## Operating routine (read before every session)
+
+Before doing any development work:
+
+1. Read this file and inspect the GitHub repository — open issues, open PRs, CI status, milestones, and blocked work.
+2. Treat GitHub Issues as the authoritative source of project work.
+3. Never begin a meaningful feature, bug fix, refactor, security change, infrastructure change, or improvement without an associated GitHub Issue.
+4. Deliver through a short-lived branch and pull request. Perform a complete engineering self-review, run the relevant tests and required CI checks, correct discovered issues, and merge only when repository requirements are satisfied.
+5. Update the associated issue, milestone, and Project tracking. Verify the issue closed and the branch was deleted.
+6. Maintain this workflow across every session. Do not rely on conversation history to remember project status.
+7. Never falsely report completed work, hide failed checks, or bypass repository security protections.
+
+This routine is a concise entry point. The detailed rules below remain mandatory.
+
 ## 1. Source of truth
 
 GitHub is the authoritative project-management system for this repository:
@@ -17,6 +31,25 @@ GitHub is the authoritative project-management system for this repository:
 - Chat instructions do not replace written issues, PR descriptions, changelogs, or ADRs.
 
 Do not claim that an issue, branch, pull request, check, merge, milestone, or project board exists unless the GitHub operation actually succeeded and the result was verified.
+
+### Intended Project board lifecycle
+
+Project V2 creation is blocked by missing token scopes (issue #18); issues and milestones are the active fallback. When the board becomes available, use these columns and exit criteria:
+
+| Column | Exit criterion |
+| --- | --- |
+| Backlog | Candidate work, not yet defined |
+| Approved / Ready | Issue has scope, acceptance criteria, dependencies, priority and milestone |
+| In Progress | Branch exists and implementation is active |
+| In Review | PR is open with self-review and green or actively checked CI |
+| Testing | Validation, migration rehearsal, or browser/realtime verification in progress |
+| Done | PR squash-merged, branch deleted, issue closed, tracking updated |
+
+Work should not skip from Backlog to In Progress without a Ready issue. "Done" is reserved for verified merges, not opened PRs.
+
+### Cross-repository consistency
+
+The same issue → branch → PR → CI → merge discipline should be applied to other repositories maintained by the owner. Each repository requires its own `AGENTS.md`, labels, milestones, protection rules, and explicit authorization. This file governs TeamFlow only; do not claim another repository is compliant until it has been audited and configured.
 
 ## 2. Repository map and standard commands
 
@@ -278,6 +311,8 @@ Current known constraints (update this section as they change):
 - `main` branch protection is configured with required pull requests, strict up-to-date checks, conversation resolution, linear history, disabled force pushes/deletions, and required checks `Typecheck, test, build`, `End-to-end tests`, and `Docker images` (issue #19, verified via API).
 - Local authoring environment has no Docker daemon; Docker image builds are verified by GitHub Actions.
 - No independent human reviewer is currently assigned; self-review is required and must not be represented as independent approval. Required approvals remain 0 for this reason.
+- Merge settings are squash-only; merge commits and rebase merges are disabled, merged branches auto-delete, and `allow_update_branch` remains off to preserve explicit rebases.
+- Dependabot alerts/security updates, secret scanning, secret-scanning push protection, and CodeQL default setup are enabled (issue #38, verified via API).
 - The Project board remains the only tracking blocker; remaining product hardening and scale work is tracked in issues #20–#34.
 
 ## 15. Session-end checklist
