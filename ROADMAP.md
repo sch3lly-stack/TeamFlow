@@ -12,6 +12,7 @@
 - [x] **Phase 8 — Analytics & reporting** dashboard, project insights, workload, throughput, cycle time, on-time rate, velocity, CSV/JSON project reports, calendar.
 - [x] **Phase 9 — Security & documentation** isolation/RBAC/auth/workflow/realtime tests, Playwright flows, architecture/ERD/API/security docs, screenshots, demo seed.
 - [x] **Phase 10 — Delivery** production Dockerfiles, Nginx proxy, Compose volumes/healthchecks, GitHub Actions quality/e2e/docker jobs, MIT license.
+- [x] **Phase 11 — Engineering governance** permanent `AGENTS.md` rules, contributor guide, issue/PR templates, CODEOWNERS, CHANGELOG, root security policy, ADRs, retroactive audit, protected `main`, and milestone-based tracking. (#16, #17, #19)
 
 ## Next
 
