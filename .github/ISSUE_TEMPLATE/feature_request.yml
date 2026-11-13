@@ -1,0 +1,76 @@
+name: Feature request
+description: Propose a new capability or meaningful enhancement
+title: "feat: "
+labels: ["type:feature"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Read `AGENTS.md` before submitting. Every meaningful change must be traceable to an issue, branch, PR, and verified merge.
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objective
+      description: What outcome should this issue achieve?
+      placeholder: A clear, testable outcome.
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Background and technical context
+      description: Current behavior, constraints, related components and prior decisions.
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope
+      description: What is included and explicitly out of scope?
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Use checklist items that a reviewer can verify.
+      placeholder: |
+        - [ ] ...
+        - [ ] ...
+    validations:
+      required: true
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies
+      description: Blocking issues, external services, credentials, or decisions.
+  - type: textarea
+    id: testing
+    attributes:
+      label: Testing requirements
+      description: Unit, integration, E2E, migration, security or manual checks.
+    validations:
+      required: true
+  - type: textarea
+    id: dod
+    attributes:
+      label: Definition of Done
+      description: Include PR merge, CI, docs and issue closure.
+      placeholder: |
+        - [ ] PR references and closes this issue
+        - [ ] CI checks pass
+        - [ ] Documentation updated
+        - [ ] Squash-merged and issue closed
+    validations:
+      required: true
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      options:
+        - Critical
+        - High
+        - Medium
+        - Low
+    validations:
+      required: true

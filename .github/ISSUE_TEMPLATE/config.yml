@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security vulnerability
+    url: https://github.com/sch3lly-stack/TeamFlow/security/advisories/new
+    about: Report vulnerabilities privately. Do not include exploit details in a public issue.
+  - name: Architecture and API documentation
+    url: https://github.com/sch3lly-stack/TeamFlow/tree/main/docs
+    about: Review architecture, database, API and security documentation before filing.
+  - name: Contributing guide
+    url: https://github.com/sch3lly-stack/TeamFlow/blob/main/CONTRIBUTING.md
+    about: Read the branch, validation and review workflow.
