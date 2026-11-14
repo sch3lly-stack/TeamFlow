@@ -18,6 +18,13 @@ baseline commit because no historical release record existed.
 
 ### Changed
 
+- Web dev server and production builds use Vite 6.4.5 (from 5.4.21). Vite 6 is
+  declared at the workspace root so `@vitejs/plugin-react` and
+  `apps/web/vite.config.ts` share one Vite 6 install. (#40)
+- API tests run on Vitest 4.1.12 (from 2.1.9) and use that same Vite 6 install.
+  4.1.12 is the first 4.1 release that includes the `@vitest/mocker` fixes for
+  GHSA-qxg6-89mg-rqv8 and GHSA-xp26-3454-mjgp; 4.1.11 is in the affected range.
+  The Vite 5 copy required by Vitest 2 is no longer installed. (#39)
 - `main` is protected by required pull requests, strict up-to-date checks, and
   the `Typecheck, test, build`, `End-to-end tests`, and `Docker images` CI jobs. (#19)
 - Issue and milestone tracking replaces the pre-tracking ad-hoc workflow.
